@@ -1,4 +1,5 @@
 import ProductCard from "./ProductCard";
+import Effect from "./Effect/Effect";
 function Products(){
 
     const products = [
@@ -36,6 +37,8 @@ function Products(){
 
     return(
         <div>
+
+            <div> <Effect /> </div>
              
 
             {

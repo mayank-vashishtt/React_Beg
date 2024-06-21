@@ -36,3 +36,7 @@ function Effect(){
 }
 
 export default Effect;
+
+// empty dependency arr == only once on mounting 
+// no dependecy arr == everytime  -- mouting and rerendering 
+// with state variable == mounting + on change of the state variable

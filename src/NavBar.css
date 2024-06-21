@@ -1,0 +1,35 @@
+
+.nav-item  {
+    margin: 0 15px !important;
+ 
+
+}
+.navbar{
+    list-style: none;
+    display: flex;
+    
+}
+
+.nav-item a {
+    color: black;
+    text-decoration:  none;
+    padding: 5px 0;
+
+
+}
+
+.nav-item a::after{
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+    color: black;
+    
+}
+
+/* margin is outside border, padding is inside border */
+/* 100k dollars is 83 lakhs 
+1 00 000 and  1 - 80 
+80 00 000  */
+
+

@@ -16,10 +16,12 @@ function App() {
   const[show, setShow] = useState(false);
 
   return (
-    <>
-      {show ? <ProgressBar /> : ""}
-      <button onClick={() => setShow(!show)}>Toggle</button>
-    </>
+
+    <TicTacToe size={4} />
+    // <>
+    //   {show ? <ProgressBar /> : ""}
+    //   <button onClick={() => setShow(!show)}>Toggle</button>
+    // </>
 
     //  <StarRating starCount = {10}/>
     // <div>

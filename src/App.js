@@ -35,3 +35,16 @@ function App() {
 export default App;
 
 
+// Redux 
+// global parent 
+// global state 
+// way to manipulate a state 
+// way to consume a state
+
+// provide 
+// store
+  // state
+  // reducer
+// action 
+// dispatcher 
+// selectors

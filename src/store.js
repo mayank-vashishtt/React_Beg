@@ -34,7 +34,7 @@ function cartReducer( state  = { items : {}},action){
         case "REMOVE_FROM_CART" : {
             const productId = action.payload.id;
             if (!state.items[productId]) {
-                return state; // Product is not in the cart
+                return state; 
             }
 
             const currentQuantity = state.items[productId].quantity;
@@ -50,7 +50,7 @@ function cartReducer( state  = { items : {}},action){
                     }
                 };
             } else {
-                // Remove the item completely if the quantity is 1
+                
                 const newItems = { ...state.items };
                 delete newItems[productId];
                 return {

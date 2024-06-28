@@ -1,16 +1,22 @@
 // App.js
 import './App.css';
-import Products from './components/Products/Products';
 import { useState } from 'react';
-import CartContext from './Context/context';
-import React from 'react';
-import ReduxAddToCart from './components/ReducAddToCart/ReduxAddToCart';
+import ProductList from './component /ProductList';
+import Cart from './component /Cart';
+import CartContext from './Context/Context';
 
-
+const products = [
+  { id: 1, name: 'Product 1', price: 100, category: 'Electronics' },
+  { id: 2, name: 'Product 2', price: 200, category: 'Furniture' },
+  { id: 3, name: 'Product 3', price: 150, category: 'Electronics' },
+  { id: 4, name: 'Product 4', price: 300, category: 'Furniture' },
+];
 
 function App() {
   const [cart, setCart] = useState({});
-  const incrCart = (product) => {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const addToCart = (product) => {
     setCart((prevCart) => ({
       ...prevCart,
       [product.id]: prevCart[product.id]
@@ -19,7 +25,7 @@ function App() {
     }));
   };
 
-  const decrCart = (product) => {
+  const removeFromCart = (product) => {
     setCart((prevCart) => {
       const newCart = { ...prevCart };
       if (newCart[product.id].qty > 1) {
@@ -32,91 +38,18 @@ function App() {
   };
 
   return (
-    <CartContext.Provider value={{ cart, incrCart, decrCart }}>
-      <div className="App">
-        <Products />
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+      <div>
+        <div>
+          <button onClick={() => setSelectedCategory('All')}>All</button>
+          <button onClick={() => setSelectedCategory('Electronics')}>Electronics</button>
+          <button onClick={() => setSelectedCategory('Furniture')}>Furniture</button>
+        </div>
+        <ProductList products={products} selectedCategory={selectedCategory} />
+        <Cart />
       </div>
     </CartContext.Provider>
   );
 }
 
 export default App;
-
-
-// import logo from './logo.svg';
-// import './App.css';
-
-// import NavBar from './NavBar';
-// import useWindowSlice from './useWindowSlice';
-// // import starRating from './StarRating';
-// import StarRating from './StarRating'; // Adjust filename and path if necessary
-// import { useState } from 'react';
-// import ProgressBar from './ProgressBar';
-// // import Cart from './component/Cart';
-// import ProductList from './component /ProductList';
-// import Cart from './component /Cart';
-
-// const products = [
-//   { id: 1, name: 'Product 1', price: 100 },
-//   { id: 2, name: 'Product 2', price: 200 },
-// ];
-
-// function App() {
-//   const { width, height } = useWindowSlice();
-//   const[show, setShow] = useState(false);
-
-//   return (
-//     <div>
-//     <ProductList products={products} />
-//     {/* <Cart /> */}
-//     <Cart />
-//   </div>
-
-//     // <TicTacToe size={4} />
-//     // <>
-//     //   {show ? <ProgressBar /> : ""}
-//     //   <button onClick={() => setShow(!show)}>Toggle</button>
-//     // </>
-
-//     //  <StarRating starCount = {10}/>
-//     // <div>
-//     //   <h1>Window Dimensions</h1>
-//     //   <p>Width: {width}px</p>
-//     //   <p>Height: {height}px</p>
-//     // </div>
-//   );
-// }
-
-// export default App;
-
-
-// // Redux  - state management for storing data
-// // global parent 
-// // global state 
-// // way to manipulate a state 
-// // way to consume a state
-
-// // provider
-// // store
-//   // state
-//   // reducer
-// // action 
-// // dispatcher 
-// // selectors
-
-// /*
-// usecontext -- prop dealing is avoided but rerender do not stop 
-
-// Q) diff between context api and redux in term of rerendering 
-// Ans) redux subsribe to the particular key while context say to subsricbe to whole state 
-
-// 4 thing you want redux or state management to do
-// -- have a global state to manage 
-// -- that state can be used 
-// -- way to consume that state 
-// -- way to manipulate the state
-
-
-
-
-// */

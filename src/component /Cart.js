@@ -1,38 +1,26 @@
-// src/components/Cart.js
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, updateQuantity } from '../actions/cartActions';
+// components/Cart.js
+import React, { useContext } from 'react';
+import CartContext from '../Context/Context';
 
 const Cart = () => {
-  const cartItems = useSelector(state => state.cart.items);
-  const dispatch = useDispatch();
-
-  const handleRemove = (id) => {
-    dispatch(removeFromCart(id));
-  };
-
-  const handleQuantityChange = (id, quantity) => {
-    if (quantity < 1) return;
-    dispatch(updateQuantity(id, quantity));
-  };
+  const { cart, removeFromCart } = useContext(CartContext);
 
   return (
     <div>
-      <h2>Shopping Cart</h2>
-      <ul>
-        {cartItems.map(item => (
-          <li key={item.id}>
-            {item.name} - ${item.price} x {item.quantity}
-            <button onClick={() => handleRemove(item.id)}>Remove</button>
-            <input
-              type="number"
-              value={item.quantity}
-              onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))}
-              min="1"
-            />
-          </li>
-        ))}
-      </ul>
+      <h2>Cart</h2>
+      {Object.keys(cart).length > 0 ? (
+        Object.values(cart).map(item => (
+          <div key={item.id}>
+            <h3>{item.name}</h3>
+            <p>Price: ${item.price}</p>
+            <p>Quantity: {item.qty}</p>
+            <p>Category: {item.category}</p>
+            <button onClick={() => removeFromCart(item)}>Remove</button>
+          </div>
+        ))
+      ) : (
+        <p>Cart is empty</p>
+      )}
     </div>
   );
 };
